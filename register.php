@@ -1,19 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <div class="container">
-        <h2>Register</h2>
-        <input type="text" id="name" placeholder="Enter your name">
-        <input type="emai" id="email" placeholder="Enter your email">
-        <input type="password" id="password" placeholder="Enter your password">
-        <p> Already have an account? <a href="index.html"></a></p>
-</div>
-    <script src="script.js"></script>
-</body>
-</html>
+<?php
+$conn = new mysqli("localhost","root","","logindb");
+ 
+if($conn->connect_error){
+    die ("<span class='error'>connection failed</span>");
+}
+$name= $_POST['name'];
+$email=$_POST['email'];
+$password= password_hash($_POST['password'], PASSWORD_DEFAULT);
+
+$check=$conn->query("SELECT*FROM users WHERE email='$email'");
+if($check->num_rows>0){
+    echo("<span class='error'>email already exists</span>");
+}
+else{
+    $sql= "INSERT INTO users(name,email,password)
+    values('$name','$email','$password')";
+    if ($conn->query($sql)){
+        echo"<span class='success'>Registered successfully
+        <a href='index.html'>Login now </a></span>";
+    }
+        else{
+            echo"<span class='error'>Registration failed</span>";
+}
+}
+$conn->close();
+?>s

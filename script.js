@@ -26,3 +26,28 @@ function register(){
 
     });
 }
+ function login(){
+    let email= document.getElementById("email").ariaValueMax;
+    let password=document.getElementById("password").ariaValueMax;
+    if(email==="" || password===""){
+        document.getElementById("msg").innerHTML="<span class='error'>Please fill all the fields.</span> "
+    }
+        return 0;
+
+ let formData = new formData();
+ formData.append("email".email);
+ formData.append("password".password);
+ fetch("dashboard.php",{
+    method ="POST",
+    body :formData
+ })
+ .then(function(response){
+    return response.text();
+ })
+ .then(function(data){
+    document.getElementById("msg").innerHTML=data;
+ })
+ .catch(function(){
+    document.getElementById("msg").innerHTML="<span class='error'>Something went wrong</span>";
+ });
+ }
