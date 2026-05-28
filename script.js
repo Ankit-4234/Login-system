@@ -1,6 +1,6 @@
 function register(){
     let name=document.getElementById("name").value;
-    let email=document.getElementById("password").value;
+    let email=document.getElementById("email").value;
     let password=document.getElementById("password").value;
     if(name==="" || email==="" || password===""){
         document.getElementById("msg").innerHTML= "<span class ='error'> please fill all the fields </span>";
@@ -46,7 +46,13 @@ function register(){
     return response.text();
  })
  .then(function(data){
-    document.getElementById("msg").innerHTML=data;
+    if(data==="success")
+    {
+        window.location.href="dashboard.php";
+    }
+    else{
+        document.getElementById("msg").innerHTML=data;
+    }
  })
  .catch(function(){
     document.getElementById("msg").innerHTML="<span class='error'>Something went wrong</span>";

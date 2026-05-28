@@ -24,4 +24,4 @@ else{
 }
 }
 $conn->close();
-?>s
+?>
