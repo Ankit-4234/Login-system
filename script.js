@@ -1,17 +1,17 @@
 function register(){
-    let name=document.getElementById("name").ariaValueMax;
-    let email=document.getElementById("password").ariaValueMax;
-    let password=document.getElementById("password").ariaValueMax;
+    let name=document.getElementById("name").value;
+    let email=document.getElementById("password").value;
+    let password=document.getElementById("password").value;
     if(name==="" || email==="" || password===""){
         document.getElementById("msg").innerHTML= "<span class ='error'> please fill all the fields </span>";
         return;
     }
-    let formData= new formData();
-    formData.append("name".name);
-    formData.append("email".email);
-    formData.appendd("password".password);
+    let formData= new FormData();
+    formData.append("name",name);
+    formData.append("email",email);
+    formData.append("password",password);
     fetch("register.php",{
-        method="POST",
+        method:"POST",
         body :formData
     })
     .then(function(response){
@@ -27,18 +27,19 @@ function register(){
     });
 }
  function login(){
-    let email= document.getElementById("email").ariaValueMax;
-    let password=document.getElementById("password").ariaValueMax;
+    let email= document.getElementById("email").value;
+    let password=document.getElementById("password").value;
     if(email==="" || password===""){
         document.getElementById("msg").innerHTML="<span class='error'>Please fill all the fields.</span> "
+         return;
     }
-        return 0;
+       
 
- let formData = new formData();
- formData.append("email".email);
- formData.append("password".password);
- fetch("dashboard.php",{
-    method ="POST",
+ let formData = new FormData();
+ formData.append("email",email);
+ formData.append("password",password);
+ fetch("login.php",{
+    method :"POST",
     body :formData
  })
  .then(function(response){
