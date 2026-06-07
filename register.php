@@ -4,7 +4,8 @@ $conn = new mysqli("sql302.infinityfree.com", "if0_41963207", "B6HJMy4CZobJ2L", 
 if($conn->connect_error){
     die ("<span class='error'>connection failed</span>");
 }
-$name= $_POST['name'];
+if($_SERVER['REQUEST_METHOD'] !== 'POST') exit();
+$name = $_POST['name'];
 $email=$_POST['email'];
 $password= password_hash($_POST['password'], PASSWORD_DEFAULT);
 

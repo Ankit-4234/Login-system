@@ -22,7 +22,7 @@ function register(){
 
     })
     .catch(function(){
-        document.getElementById("msg").innerHTML="<span class='error'> something went wround</span>";
+        document.getElementById("msg").innerHTML="<span class='error'> something went wroung</span>";
 
     });
 }
